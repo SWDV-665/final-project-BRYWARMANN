@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<h1>Today's Date: {{ date }}</h1>
+<br>
+
+<div id="todayTasksView">
+  <h3>Your tasks:</h3>
+  <p *ngIf="loadItem('task').length === 0">
+    You have no more tasks. Click the button to add more!
+  </p>
+  <ion-list id="todayTasksList">
+    <ion-item-sliding *ngFor="let task of loadItem('task'); let i = index" class="slider">
+      <ion-item class="item">
+        <ion-icon item-start name="paper" color="primary">
+        </ion-icon>
+        <h2><span class="name">{{ task.name }}</span></h2>
+        <p><strong>Start Date: </strong>{{ task.startDate }}</p>
+        <p><strong>End Date: </strong>{{ task.endDate }}</p>
+        <p><strong>Details:</strong></p>
+        <p>{{ task.details }}</p>
+      </ion-item>
+      <ion-item-options side="right">
+         <!-- will add edit functionality later. Struggling getting it to work with a modal
+        <button ion-button color="primary">
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button> -->
+        <button ion-button color="primpary" (click)="completeItem(item, index, 'task')">
+          <ion-icon name="checkmark"></ion-icon>
+          Complete
+        </button>
+        <button ion-button color="secondary" (click)="removeItem(item, index, 'task')">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <br>
+  <button ion-button round class="todayTaskAdd" (click)="addItem('task')">Add New Task</button>
+</div>
+<br>
+
+<div id="todayEventsView">
+  <h3>Your events:</h3>
+  <p *ngIf="loadItem('event').length === 0">
+    You have no more events. Click the button to add more!
+  </p>
+  <!-- Home list will show a simplified view of the event/task-->
+  <ion-list>
+    <ion-item-sliding *ngFor="let event of loadItem('event'); let i = index" class="slider">
+      <ion-item class="item">
+        <ion-icon item-start name="calendar" color="primary"></ion-icon>
+        <h2><span class="name">{{ event.name }}</span></h2>
+        <p><strong>Start Date: </strong>{{ event.startDate }}</p>
+        <p><strong>End Date: </strong>{{ event.endDate }}</p>
+        <p><strong>Details:</strong></p>
+        <p>{{ event.details }}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <!-- will add edit functionality later. Struggling getting it to work with a modal
+        <button ion-button color="primary">
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button> -->
+        <button ion-button color="primpary" (click)="completeItem(item, index, 'event')">
+          <ion-icon name="checkmark"></ion-icon>
+          Complete
+        </button>
+        <button ion-button color="secondary" (click)="removeItem(item, index, 'event')">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <br>
+  <button ion-button round class="todayEventAdd" (click)="addItem('event')">Add New Event</button>
+</div>
+<br>
+
+<!-- list of completed items -->
+<div id="completedItems">
+  <h3>Your completed items: </h3>
+  <p *ngIf="loadItem('completed').length === 0">
+    You have no completed tasks or events.
+  </p>
+  <p *ngIf="loadItem('completed').length > 0">
+    Great job!
+  </p>
+  <br>
+  <ion-list >
+      <ion-item *ngFor="let completed of loadItem('completed'); let i = index">
+        <h2><span class="name"> {{ completed.name }}</span></h2>
+        <p><strong>Details:</strong></p>
+        <p>{{ completed.details }}</p>
+      </ion-item>
+  </ion-list>
+</div>
+
+</ion-content>

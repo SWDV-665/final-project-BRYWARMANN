@@ -1,0 +1,57 @@
+<!--
+  Generated template for the ModalInputPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>New Task</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="formData" (ngSumbit)="onSubmit('task')">
+    <ion-item>
+      <ion-label floating>Title: </ion-label>
+      <ion-input id="name" type="text" formControlName="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Start Date: </ion-label>
+      <ion-input id="startDate" type="datetime-local" formControlName="startDate"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>End Date: </ion-label>
+      <ion-input id="endDate" type="datetime-local" formControlName="endDate"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Details: </ion-label>
+      <ion-input id="description" type="text" formControlName="details"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Location: </ion-label>
+      <ion-input id="location" type="text" formControlName="location"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="notifylabel" inline>Notifications: </ion-label>
+      <ion-toggle id="notification" formControlName="notification" [(ngModel)]="isToggled"></ion-toggle>
+    </ion-item>
+
+    <br>
+
+    <ion-item style="display: none">
+      <ion-input id="type" type="type" formControlName="type"></ion-input>
+    </ion-item>
+
+    
+    <ion-buttons>
+      <button ion-button (click)="closeModal()">Cancel</button>
+      <button ion-button type="submit" (click) ="onSubmit('task')">Save</button>
+    </ion-buttons>
+  </form>
+</ion-content>

@@ -1,0 +1,15 @@
+page-home {
+    .name {
+        font-size: 25px;
+    }
+
+    #todayTasksView, #todayEventsView, #completedItems {
+        background-color: rgb(226, 226, 226);
+        padding: 20px;
+    }
+
+    .slider {
+        border-radius: 5px;
+    }
+
+}
